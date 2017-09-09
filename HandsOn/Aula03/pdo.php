@@ -104,6 +104,31 @@ class Banner
 
 	$pdo = new PDO($dsn, $user, $pass);
 
+
+	$query = 'UPDATE banners SET nome = :nome, descricao = :descricao, url = :url where id = :id';
+
+	$campos = [$nome = 'teste', $descricao = 'teste descricao', $url = 'teste url', $id = 11];
+
+	$statement = $pdo->prepare($query);
+
+	$statement->execute($campos);
+
+	// -----------------------------------------------------------------------------------
+
+	$query = 'INSERT INTO banners (nome, descricao, url) VALUES (:nome, :descricao, :url)';
+
+	$campos = [$nome = 'teste2', $descricao = 'teste2descricao', $url = 'urlteste2'];
+
+	$insert = $pdo->prepare($query);
+
+	$insert->execute($campos);
+
+
+
+
+	// ------------------------------------------------------------------------------------
+
+
 	$prepare = $pdo->query('SELECT * FROM banners');
 	$prepare->execute();
 
