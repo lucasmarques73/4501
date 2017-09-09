@@ -100,7 +100,7 @@ $rotas = [
         // include('../views/admin/funcionario/index.phtml');
         // include('../views/admin/layout/_rodape.phtml');
 
-        View::admin('funcionarios/index');
+        View::admin('funcionario/index');
     },
 
     'funcionario/inserir' => function () {
@@ -108,7 +108,7 @@ $rotas = [
         // include('../views/admin/funcionario/insert.phtml');
         // include('../views/admin/layout/_rodape.phtml');
 
-        View::admin('funcionarios/insert');
+        View::admin('funcionario/insert');
     },
 
     'funcionario/editar' => function () {
@@ -116,7 +116,7 @@ $rotas = [
         // include('../views/admin/funcionario/edit.phtml');
         // include('../views/admin/layout/_rodape.phtml');
 
-        View::admin('funcionarios/editar');
+        View::admin('funcionario/editar');
     },
 
     /*
