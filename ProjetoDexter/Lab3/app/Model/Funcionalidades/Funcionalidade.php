@@ -1,5 +1,10 @@
 <?php
 
+namespace app\Model\Funcionalidades;
+
+use lib\Trait\MessageTrait;
+
+
 class Funcionalidade
 {
     

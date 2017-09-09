@@ -1,5 +1,7 @@
 <?php 
 
+namespace lib\Trait
+
 trait Message
 {
 	public static function set($message, $type)

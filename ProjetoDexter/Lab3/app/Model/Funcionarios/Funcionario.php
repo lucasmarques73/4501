@@ -1,5 +1,9 @@
 <?php
 
+namespace app\Model\Funcionarios;
+
+use lib\Trait\MessageTrait;
+
 
 class Funcionario
 {

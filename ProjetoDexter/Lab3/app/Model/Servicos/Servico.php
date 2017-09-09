@@ -1,5 +1,10 @@
 <?php
 
+namespace app\Model\Servicos;
+
+use lib\Trait\MessageTrait;
+
+
 class Servico
 {
     

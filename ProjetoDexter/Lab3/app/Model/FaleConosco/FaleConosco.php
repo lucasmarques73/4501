@@ -1,5 +1,10 @@
 <?php
 
+namespace app\Model\FaleConosco;
+
+use lib\Trait\MessageTrait;
+
+
 
 class FaleConosco
 {

@@ -1,4 +1,9 @@
 <?php
+
+namespace app\Model\Banners;
+
+use lib\Trait\MessageTrait;
+
 class Banner
 {
     

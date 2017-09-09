@@ -1,5 +1,9 @@
 <?php
 
+namespace app\Model\Clientes;
+
+use lib\Trait\MessageTrait;
+
 class Cliente
 {
     
