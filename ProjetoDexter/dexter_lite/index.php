@@ -76,35 +76,6 @@ switch ($_GET['route']) {
 
 		break;
 
-	// Não está sendo usado
-	// case 'create_banner':
-
-	// 	$query = 'INSERT INTO banners (nome, descricao, url) VALUES (:nome, :descricao, :url)';
-
-	// 	$campos = [$nome = 'teste2', $descricao = 'teste2descricao', $url = 'urlteste2'];
-
-	// 	$insert = $pdo->prepare($query);
-
-	// 	$insert->execute($campos);
-
-	// 	//------------------------------------------------------
-
-	// 	$prepare = $pdo->query('SELECT * FROM banners');
-	// 	$prepare->execute();
-
-	// 	$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
-	// 	$banners = [];
-	// 	foreach ($result as $key => $item) 
-	// 	{
-	// 		$banners[$key] = new Banner($item['id'],$item['nome'],$item['descricao'],$item['url']);
-
-	// 	}
-
-	// 	include 'View/Banner/index.php';
-
-	// 	break;
-
 	case 'edit_banner':
 
 		if (isset($_POST['update'])) {
@@ -155,39 +126,6 @@ switch ($_GET['route']) {
 
 		break;
 
-	//Não está sendo usado;
-	// case 'update_banner':
-
-
-	// 	var_dump($_POST);
-	// 	die();
-
-	// 	$query = 'UPDATE banners SET nome = :nome, descricao = :descricao, url = :url where id = :id';
-
-	// 	$campos = [$nome = 'teste', $descricao = 'teste descricao', $url = 'teste url', $id = 11];
-
-	// 	$statement = $pdo->prepare($query);
-
-	// 	$statement->execute($campos);
-
-	// 	//-------------------------------
-
-	// 	$prepare = $pdo->query('SELECT * FROM banners');
-	// 	$prepare->execute();
-
-	// 	$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
-	// 	$banners = [];
-	// 	foreach ($result as $key => $item) 
-	// 	{
-	// 		$banners[$key] = new Banner($item['id'],$item['nome'],$item['descricao'],$item['url']);
-
-	// 	}
-
-	// 	include 'View/Banner/index.php';
-
-	// 	break;
-
 	case 'delete_banner':
 
 		$query = 'DELETE FROM banners where id = :id';
@@ -200,19 +138,10 @@ switch ($_GET['route']) {
 
 
 		//---------------------------------------------
-		$prepare = $pdo->query('SELECT * FROM banners');
-		$prepare->execute();
 
-		$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+		header('Location: ?route=banner');
 
-		$banners = [];
-		foreach ($result as $key => $item) 
-		{
-			$banners[$key] = new Banner($item['id'],$item['nome'],$item['descricao'],$item['url']);
-
-		}
-
-		include 'View/Banner/index.php';
+		
 		break;
 
 	case 'clientes':
