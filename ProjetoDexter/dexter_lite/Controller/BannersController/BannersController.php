@@ -2,12 +2,9 @@
 
 namespace Controller\BannersController;
 
-include 'Controller/BaseController/BaseController.php';
-use Controller\BaseController\BaseController as BaseController;
+use Controller\BaseController\BaseController;
 
-
-include 'Model/Banners/Banner.php';
-use Model\Banners\Banner as Banner;
+use Model\Banners\Banner;
 
 class BannersController
 {
@@ -22,6 +19,23 @@ class BannersController
 	public function all()
 	{
 
+		$prepare = $this->pdo->query('SELECT * FROM banners ORDER BY id');
+		$prepare->execute();
+
+		$result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+
+		$banners = [];
+		foreach ($result as $key => $item) 
+		{
+			$banners[$key] = new Banner($item['id'],$item['nome'],$item['descricao'],$item['url']);
+	
+		}
+
+		return $banners;
+	}
+
+	public static function getAll()
+	{
 		$prepare = $this->pdo->query('SELECT * FROM banners ORDER BY id');
 		$prepare->execute();
 

@@ -4,9 +4,13 @@ namespace Src\Conexao;
 
 class Conexao
 {
-	private $dsn 	= 'pgsql:host=localhost; dbname=dexter';
-	private $user 	= 'dexter';
-	private $pass 	= 'dexter@secret';
+	// private static $dsn 		= 'pgsql:host=localhost; dbname=dexter';
+	// private static $user 	= 'dexter';
+	// private static $pass 	= 'dexter@secret';
+
+	private static $dsn = 'pgsql:host=localhost; dbname=dexter';
+	private static $user = 'usuario_dexter';
+	private static $pass = '123456789';
 
 	private  static $instance;
 
@@ -33,17 +37,9 @@ class Conexao
 
 	public static function getInstance()
 	{
-		// $dsn = 'pgsql:host=localhost; dbname=dexter';
-		// $user = 'dexter';
-		// $pass = 'dexter@secret';
-
-		$dsn = 'pgsql:host=localhost; dbname=dexter';
-		$user = 'usuario_dexter';
-		$pass = '123456789';
-
 		if (!isset(self::$instance)) 
 		{
-			self::$instance = new \PDO($dsn, $user, $pass);
+			self::$instance = new \PDO(self::$dsn, self::$user, self::$pass);
 		}
 
 		return self::$instance;

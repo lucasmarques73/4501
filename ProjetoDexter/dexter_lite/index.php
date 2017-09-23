@@ -1,9 +1,9 @@
 <?php 
 
+include 'autoload.php';
 
 // Criando um objeto BannersController
-include 'Controller/BannersController/BannersController.php';
-use Controller\BannersController\BannersController as BannersController;
+use Controller\BannersController\BannersController;
 
 $bannersController = new BannersController;
 /// -------------------------------------------
@@ -26,6 +26,8 @@ switch ($_GET['route']) {
 		break;
 
 	case 'banner':
+
+		// $banners = BannersController::getAll();
 
 		$banners = $bannersController->all();
 

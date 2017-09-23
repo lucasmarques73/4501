@@ -2,9 +2,9 @@
 
 namespace Controller\BaseController;
 
-include 'Src/Conexao/Conexao.php';
+// include 'Src/Conexao/Conexao.php';
 
-use Src\Conexao\Conexao as Conexao;
+use Src\Conexao\Conexao;
 
 class BaseController
 {

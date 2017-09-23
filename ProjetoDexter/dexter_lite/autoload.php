@@ -14,10 +14,10 @@
 spl_autoload_register(function ($class) {
 
     // project-specific namespace prefix
-    $prefix = 'Foo\\Bar\\';
+    $prefix = '';
 
     // base directory for the namespace prefix
-    $base_dir = __DIR__ . '/src/';
+    $base_dir = __DIR__ . '/';
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
@@ -36,7 +36,10 @@ spl_autoload_register(function ($class) {
 
     // if the file exists, require it
     if (file_exists($file)) {
+        // echo $file;
         require $file;
+    } else {
+        // echo $file;
     }
 });
 
