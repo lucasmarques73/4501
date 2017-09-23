@@ -1,4 +1,4 @@
-<h2 class="text-center">Lista de Banners</h2>
+<h3 class="text-center">Lista de Banners</h3>
 
 <a href="?route=banner&function=new" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i>
 </a>

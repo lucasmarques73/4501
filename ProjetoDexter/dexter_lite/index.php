@@ -25,26 +25,31 @@ switch ($_GET['route']) {
 		break;	
 
 	case 'clientes':
-		include 'View/Clientes.php';
+
+		$baseView->render('Clientes', 'index');
 		break;
 
 	case 'fale_conosco':
-		include 'View/Fale_conosco.php';
+		
+		$baseView->render('FaleConosco', 'index');
 		break;
 
 	case 'funcionalidades':
-		include 'View/Funcionalidades.php';
+		
+		$baseView->render('Funcionalidades', 'index');
 		break;
 
 	case 'funcionarios':
-		include 'View/Funcionarios.php';
+		
+		$baseView->render('Funcionarios', 'index');
 		break;
 
 	case 'servicos':
-		include 'View/Servicos.php';
+		
+		$baseView->render('Servicos', 'index');
 		break;
 
 	default:
-		include 'View/404.php';
+		$baseView->render('Erro', '404');
 		break;
 }
