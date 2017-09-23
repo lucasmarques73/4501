@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h3>Novo Banner</h3>
+		<h3 class="text-center">Novo Banner</h3>
 	</div>
 	<form id="new_banner" method="POST" action="#">
 	  <div class="form-group">
@@ -17,8 +17,10 @@
 	  </div>
 	  <input type="hidden" name="create" value="true">
 	  <!-- <a href="?route=create_banner" class="btn btn-success">Salvar</a> -->
-	  <button type="submit" class="btn btn-success">Salvar</button>
-	  <a href="?route=banner" class="btn btn-warning">Cancelar</a>
+	  <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+</button>
+	  <a href="?route=banner&function=index" class="btn btn-warning"><i class="fa fa-undo" aria-hidden="true"></i>
+</a>
 	</form>
 </div>
 

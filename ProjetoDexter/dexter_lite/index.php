@@ -2,80 +2,27 @@
 
 include 'autoload.php';
 
-// Criando um objeto BannersController
-use Controller\BannersController\BannersController;
+use View\BaseView\BaseView;
 
-$bannersController = new BannersController;
-/// -------------------------------------------
+$baseView = new BaseView;
 
 # Routes;	
 if (!isset($_GET['route'])) {
 	$_GET['route'] = 'home';
 }
 
-include 'header.php';
-
 switch ($_GET['route']) {
 
 	case 'home':
 
-		include 'View/Home.php';
-
+		$baseView->render('Home', 'index');
 		break;
 
 	case 'banner':
 
-		$banners = $bannersController->all();
+		include 'Routes/BannersRoutes.php';
 
-		include 'View/Banner/index.php';
-
-		break;
-
-	case 'new_banner':
-
-		include 'View/Banner/new.php';
-
-		$data = $_POST;
-
-		if (isset($data['create'])) {			
-
-			$isCreate = $bannersController->store($nome, $descricao, $url);
-
-			if ($isCreate) {
-				header('Location: ?route=banner');
-			}
-		}		
-
-		break;
-
-	case 'edit_banner':
-
-		$banner = $bannersController->edit($_GET['id']);
-
-		include 'View/Banner/edit.php';
-
-		$data = $_POST;
-
-		if (isset($data['update'])) {
-
-			$isUpdate = $bannersController->update($data);	
-			
-			if ($isUpdate) {
-				header('Location: ?route=banner');
-			}			
-		}		
-
-		break;
-
-	case 'delete_banner':
-
-		$isDelete = $bannersController->delete($_GET['id']);
-
-		if ($isDelete) {
-			header('Location: ?route=banner');
-		}
-		
-		break;
+		break;	
 
 	case 'clientes':
 		include 'View/Clientes.php';
@@ -101,5 +48,3 @@ switch ($_GET['route']) {
 		include 'View/404.php';
 		break;
 }
-
-include 'footer.php';
