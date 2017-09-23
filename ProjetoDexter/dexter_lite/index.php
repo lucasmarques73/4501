@@ -1,13 +1,13 @@
 <?php 
 
-include 'Src/Conexao/Conexao.php';
 
-use Src\Conexao\Conexao as Conexao;
+// Criando um objeto BannersController
+include 'Controller/BannersController/BannersController.php';
+use Controller\BannersController\BannersController as BannersController;
 
-include 'Model/Banners/Banner.php';
-use Model\Banners\Banner as Banner;
+$bannersController = new BannersController;
+/// -------------------------------------------
 
-$pdo = Conexao::getInstance();
 
 
 # Routes;	
@@ -27,17 +27,7 @@ switch ($_GET['route']) {
 
 	case 'banner':
 
-		$prepare = $pdo->query('SELECT * FROM banners ORDER BY id');
-		$prepare->execute();
-
-		$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
-		$banners = [];
-		foreach ($result as $key => $item) 
-		{
-			$banners[$key] = new Banner($item['id'],$item['nome'],$item['descricao'],$item['url']);
-	
-		}
+		$banners = $bannersController->all();
 
 		include 'View/Banner/index.php';
 
@@ -45,38 +35,36 @@ switch ($_GET['route']) {
 
 	case 'new_banner':
 
+		$bannersController->create();		
+
 		if (isset($_POST['create'])) {
 
-			if (!isset($_POST['nome'])) {
-				$_POST['nome'] = "";
-			}
-			if (!isset($_POST['descricao'])) {
-				$_POST['descricao'] = "";
-			}
-			if (!isset($_POST['url'])) {
-				$_POST['url'] = "";
-			}
+				if (!isset($_POST['nome'])) {
+					$_POST['nome'] = "";
+				}
+				if (!isset($_POST['descricao'])) {
+					$_POST['descricao'] = "";
+				}
+				if (!isset($_POST['url'])) {
+					$_POST['url'] = "";
+				}
 
-			$query = 'INSERT INTO banners (nome, descricao, url) VALUES (:nome, :descricao, :url)';
+				$nome 		= $_POST['nome'];
+				$descricao 	= $_POST['descricao'];
+				$url 		= $_POST['url'];
 
-			$campos = array(
-				':nome' 		=> $_POST['nome'], 
-				':descricao' 	=> $_POST['descricao'], 
-				':url' 			=> $_POST['url']
-			);
+				$isCreate = $bannersController->store($nome, $descricao, $url);
 
-			$insert = $pdo->prepare($query);
-
-			$insert->execute($campos);
-
-			header('Location: ?route=banner');
-		}
-
-		include 'View/Banner/new.php';
+				if ($isCreate) {
+					header('Location: ?route=banner');
+				}
+		}		
 
 		break;
 
 	case 'edit_banner':
+
+		$bannersController->edit($_GET['id']);
 
 		if (isset($_POST['update'])) {
 
@@ -93,54 +81,27 @@ switch ($_GET['route']) {
 				$_POST['id'] = "";
 			}
 
-			$query = 'UPDATE banners SET nome = :nome, descricao = :descricao, url = :url where id = :id';
+			$id 		= $_POST['id'];
+			$nome 		= $_POST['nome'];
+			$descricao 	= $_POST['descricao'];
+			$url 		= $_POST['url'];
 
-			$campos = array(
-				':nome' 		=> $_POST['nome'], 
-				':descricao' 	=> $_POST['descricao'], 
-				':url' 			=> $_POST['url'],
-				':id' 			=> $_POST['id']
-				);
-
-			$statement = $pdo->prepare($query);
-
-			$statement->execute($campos);
-
-			header('Location: ?route=banner');
-		}
-
-		$query = 'SELECT * FROM banners where id = :id';
-
-		$campos = [$id = $_GET['id']];
-
-		$statement = $pdo->prepare($query);
-
-		$statement->execute($campos);
-
-		$result = $statement->fetch(PDO::FETCH_ASSOC);
-
-
-		$banner = new Banner($result['id'],$result['nome'],$result['descricao'],$result['url']);
-
-		include 'View/Banner/edit.php';
+			$isUpdate = $bannersController->update($id, $nome, $descricao, $url);	
+			
+			if ($isUpdate) {
+				header('Location: ?route=banner');
+			}			
+		}		
 
 		break;
 
 	case 'delete_banner':
 
-		$query = 'DELETE FROM banners where id = :id';
+		$isDelete = $bannersController->delete($_GET['id']);
 
-		$campos = [$id = $_GET['id']];
-
-		$statement = $pdo->prepare($query);
-
-		$statement->execute($campos);
-
-
-		//---------------------------------------------
-
-		header('Location: ?route=banner');
-
+		if ($isDelete) {
+			header('Location: ?route=banner');
+		}
 		
 		break;
 

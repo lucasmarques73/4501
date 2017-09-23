@@ -33,9 +33,13 @@ class Conexao
 
 	public static function getInstance()
 	{
+		// $dsn = 'pgsql:host=localhost; dbname=dexter';
+		// $user = 'dexter';
+		// $pass = 'dexter@secret';
+
 		$dsn = 'pgsql:host=localhost; dbname=dexter';
-		$user = 'dexter';
-		$pass = 'dexter@secret';
+		$user = 'usuario_dexter';
+		$pass = '123456789';
 
 		if (!isset(self::$instance)) 
 		{
