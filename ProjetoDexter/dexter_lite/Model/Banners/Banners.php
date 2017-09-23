@@ -2,7 +2,7 @@
 
 namespace Model\Banners;
 
-class Banner
+class Banners
 {
     
     private $id;
@@ -11,9 +11,9 @@ class Banner
 
     private $descricao;
 
-    private $url;
+    private $url;   
 
-    public function __construct($id, $nome, $descricao, $url)
+    public function __construct($id = null, $nome = null, $descricao = null, $url = null)
     {
         $this->id           = $id;
         $this->nome         = $nome;

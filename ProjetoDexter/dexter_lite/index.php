@@ -27,8 +27,6 @@ switch ($_GET['route']) {
 
 	case 'banner':
 
-		// $banners = BannersController::getAll();
-
 		$banners = $bannersController->all();
 
 		include 'View/Banner/index.php';
@@ -37,7 +35,7 @@ switch ($_GET['route']) {
 
 	case 'new_banner':
 
-		$bannersController->create();		
+		include 'View/Banner/new.php';
 
 		if (isset($_POST['create'])) {
 
@@ -66,7 +64,9 @@ switch ($_GET['route']) {
 
 	case 'edit_banner':
 
-		$bannersController->edit($_GET['id']);
+		$banner = $bannersController->edit($_GET['id']);
+
+		include 'View/Banner/edit.php';
 
 		if (isset($_POST['update'])) {
 

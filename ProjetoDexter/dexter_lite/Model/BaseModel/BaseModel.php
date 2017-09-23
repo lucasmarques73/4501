@@ -1,15 +1,19 @@
 <?php 
 
-namespace Controller\BaseController;
+namespace Model\BaseModel;
 
 // use Src\Conexao\Conexao;
 
-class BaseController
+class BaseModel
 {
+
+	function __construct()
+	{
+		
+	}
+
 	// public static function pdo()
 	// {
 	// 	return Conexao::getInstance();
 	// }
-
-	
 }
