@@ -8,8 +8,6 @@ use Controller\BannersController\BannersController;
 $bannersController = new BannersController;
 /// -------------------------------------------
 
-
-
 # Routes;	
 if (!isset($_GET['route'])) {
 	$_GET['route'] = 'home';
@@ -37,27 +35,15 @@ switch ($_GET['route']) {
 
 		include 'View/Banner/new.php';
 
-		if (isset($_POST['create'])) {
+		$data = $_POST;
 
-				if (!isset($_POST['nome'])) {
-					$_POST['nome'] = "";
-				}
-				if (!isset($_POST['descricao'])) {
-					$_POST['descricao'] = "";
-				}
-				if (!isset($_POST['url'])) {
-					$_POST['url'] = "";
-				}
+		if (isset($data['create'])) {			
 
-				$nome 		= $_POST['nome'];
-				$descricao 	= $_POST['descricao'];
-				$url 		= $_POST['url'];
+			$isCreate = $bannersController->store($nome, $descricao, $url);
 
-				$isCreate = $bannersController->store($nome, $descricao, $url);
-
-				if ($isCreate) {
-					header('Location: ?route=banner');
-				}
+			if ($isCreate) {
+				header('Location: ?route=banner');
+			}
 		}		
 
 		break;
@@ -68,27 +54,11 @@ switch ($_GET['route']) {
 
 		include 'View/Banner/edit.php';
 
-		if (isset($_POST['update'])) {
+		$data = $_POST;
 
-			if (!isset($_POST['nome'])) {
-				$_POST['nome'] = "";
-			}
-			if (!isset($_POST['descricao'])) {
-				$_POST['descricao'] = "";
-			}
-			if (!isset($_POST['url'])) {
-				$_POST['url'] = "";
-			}
-			if (!isset($_POST['id'])) {
-				$_POST['id'] = "";
-			}
+		if (isset($data['update'])) {
 
-			$id 		= $_POST['id'];
-			$nome 		= $_POST['nome'];
-			$descricao 	= $_POST['descricao'];
-			$url 		= $_POST['url'];
-
-			$isUpdate = $bannersController->update($id, $nome, $descricao, $url);	
+			$isUpdate = $bannersController->update($data);	
 			
 			if ($isUpdate) {
 				header('Location: ?route=banner');

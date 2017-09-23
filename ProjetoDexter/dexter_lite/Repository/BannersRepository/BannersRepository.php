@@ -33,8 +33,22 @@ class BannersRepository
         return $banners;
     }
 
-    public function store($nome, $descricao, $url)
+    public function store($data)
     {
+		if (!isset($data['nome'])) {
+			$data['nome'] = "";
+		}
+		if (!isset($data['descricao'])) {
+			$data['descricao'] = "";
+		}
+		if (!isset($data['url'])) {
+			$data['url'] = "";
+		}
+		
+		$nome 		= $data['nome'];
+		$descricao 	= $data['descricao'];
+		$url 		= $data['url'];
+
     	$query = 'INSERT INTO banners (nome, descricao, url) VALUES (:nome, :descricao, :url)';
 
 		$campos = array(
@@ -50,8 +64,26 @@ class BannersRepository
 		return true;
     }
 
-    public function update($id, $nome, $descricao, $url)
-	{
+    public function update($data)
+	{		
+		if (!isset($data['nome'])) {
+			$data['nome'] = "";
+		}
+		if (!isset($data['descricao'])) {
+			$data['descricao'] = "";
+		}
+		if (!isset($data['url'])) {
+			$data['url'] = "";
+		}
+		if (!isset($data['id'])) {
+			$data['id'] = "";
+		}
+
+		$id			= $data['id'];
+		$nome 		= $data['nome'];
+		$descricao 	= $data['descricao'];
+		$url 		= $data['url'];
+
 		$query = 'UPDATE banners SET nome = :nome, descricao = :descricao, url = :url where id = :id';
 
 		$campos = array(

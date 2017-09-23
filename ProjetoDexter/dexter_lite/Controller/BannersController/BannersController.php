@@ -19,19 +19,14 @@ class BannersController
 		return $this->bannersRepository->all();
 	}
 
-	public function store($nome, $descricao, $url)
+	public function store($data)
 	{
-		return $this->bannersRepository->store($nome,$descricao, $url);
+		return $this->bannersRepository->store($data);
 	}
 
-	// public function create()
-	// {
-	// 	include 'View/Banner/new.php';
-	// }
-
-	public function update($id, $nome, $descricao, $url)
+	public function update($data)
 	{
-		return $this->bannersRepository->update($id, $nome, $descricao, $url);
+		return $this->bannersRepository->update($data);
 	}
 
 	public function edit($id)
@@ -43,6 +38,5 @@ class BannersController
 	{
 		return $this->bannersRepository->delete($id);
 	}
-
 
 }
